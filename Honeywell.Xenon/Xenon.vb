@@ -47,28 +47,60 @@ Public Class Xenon
         End If
     End Function
 
+    Public Function GetImageBmp(ByVal save_path As String) As Boolean
+        path = save_path
+        photo = True
+
+        AddHandler _port.DataReceived, AddressOf DataReceivedHandler
+        _port.ReadExisting()
+        Dim commande As String = ChrW(22) & ChrW(77) & ChrW(13) & "IMGSNP1L1B1T;IMGSHP8F70K18E."
+        _port.WriteLine(commande)
+        Dim compteur As Integer = 0
+        While Not eventEnd 'And compteur <= 100
+            Thread.Sleep(100)
+            compteur += 1
+        End While
+        If compteur > 100 Then
+            Return False
+        Else
+            Return True
+        End If
+    End Function
+
     Private Sub DataReceivedHandler(sender As Object, e As SerialDataReceivedEventArgs)
         Thread.Sleep(1000)
         Dim sp As SerialPort = CType(sender, SerialPort)
         If photo And sp.IsOpen Then
             Dim rx As Integer
             rx = sp.BytesToRead
-            If rx > 0 Then
+            Dim first As Boolean = True
+
+            Dim result() As Byte = New Byte(0) {}
+            While rx > 0
                 Dim test As Byte() = New Byte(rx - 1) {}
                 sp.Read(test, 0, rx)
+                If first Then
+                    Dim beginJpg() As Byte = {&H1D} 'for example
 
-                Dim beginJpg() As Byte = {&H1D} 'for example
+                    For x As Integer = 0 To test.GetUpperBound(0)
+                        If test.Skip(x).Take(1).SequenceEqual(beginJpg) Then
+                            test = test.Skip(x + 1).ToArray
+                            Exit For
+                        End If
+                    Next
+                    first = False
 
-                For x As Integer = 0 To test.GetUpperBound(0)
-                    If test.Skip(x).Take(1).SequenceEqual(beginJpg) Then
-                        test = test.Skip(x + 1).ToArray
-                        Exit For
-                    End If
-                Next
-                My.Computer.FileSystem.WriteAllBytes(path, test, False)
+                    result = test
+                Else
+                    result = result.Concat(test).ToArray
+                End If
 
-                photo = False
-            End If
+                rx = sp.BytesToRead
+            End While
+
+            My.Computer.FileSystem.WriteAllBytes(path, result, False)
+
+            photo = False
 
             sp.ReadExisting()
         End If

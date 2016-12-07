@@ -9,13 +9,26 @@ Public Class Form1
 
     End Sub
 
-    Private Sub btnPhoto_Click(sender As Object, e As EventArgs) Handles btnPhoto.Click
+    Private Sub btnJPG_Click(sender As Object, e As EventArgs) Handles btnJPG.Click
         If PictureBox1.Image IsNot Nothing Then
             PictureBox1.Image.Dispose()
         End If
         Dim xenon As Xenon = New Xenon("COM6")
         If xenon.GetImageJpeg("C:\temp\test.jpg") Then
             PictureBox1.Image = Image.FromFile("C:\temp\test.jpg")
+        Else
+            MsgBox("erreur")
+        End If
+        xenon.Dispose()
+    End Sub
+
+    Private Sub btnBMP_Click(sender As Object, e As EventArgs) Handles btnBMP.Click
+        If PictureBox1.Image IsNot Nothing Then
+            PictureBox1.Image.Dispose()
+        End If
+        Dim xenon As Xenon = New Xenon("COM6")
+        If xenon.GetImageBmp("C:\temp\test.bmp") Then
+            PictureBox1.Image = Image.FromFile("C:\temp\test.bmp")
         Else
             MsgBox("erreur")
         End If

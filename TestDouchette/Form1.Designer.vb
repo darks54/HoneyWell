@@ -22,19 +22,20 @@ Partial Class Form1
     'Ne la modifiez pas à l'aide de l'éditeur de code.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.btnPhoto = New System.Windows.Forms.Button()
+        Me.btnJPG = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.btnBMP = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'btnPhoto
+        'btnJPG
         '
-        Me.btnPhoto.Location = New System.Drawing.Point(12, 12)
-        Me.btnPhoto.Name = "btnPhoto"
-        Me.btnPhoto.Size = New System.Drawing.Size(75, 23)
-        Me.btnPhoto.TabIndex = 8
-        Me.btnPhoto.Text = "Photo"
-        Me.btnPhoto.UseVisualStyleBackColor = True
+        Me.btnJPG.Location = New System.Drawing.Point(12, 12)
+        Me.btnJPG.Name = "btnJPG"
+        Me.btnJPG.Size = New System.Drawing.Size(75, 23)
+        Me.btnJPG.TabIndex = 8
+        Me.btnJPG.Text = "JPG"
+        Me.btnJPG.UseVisualStyleBackColor = True
         '
         'PictureBox1
         '
@@ -48,19 +49,30 @@ Partial Class Form1
         Me.PictureBox1.TabIndex = 9
         Me.PictureBox1.TabStop = False
         '
+        'btnBMP
+        '
+        Me.btnBMP.Location = New System.Drawing.Point(93, 12)
+        Me.btnBMP.Name = "btnBMP"
+        Me.btnBMP.Size = New System.Drawing.Size(75, 23)
+        Me.btnBMP.TabIndex = 10
+        Me.btnBMP.Text = "BMP"
+        Me.btnBMP.UseVisualStyleBackColor = True
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(736, 590)
+        Me.Controls.Add(Me.btnBMP)
         Me.Controls.Add(Me.PictureBox1)
-        Me.Controls.Add(Me.btnPhoto)
+        Me.Controls.Add(Me.btnJPG)
         Me.Name = "Form1"
         Me.Text = "Form3"
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents btnPhoto As Button
+    Friend WithEvents btnJPG As Button
     Friend WithEvents PictureBox1 As PictureBox
+    Friend WithEvents btnBMP As Button
 End Class
