@@ -1,6 +1,6 @@
 # HoneyWell
 
-Lecteur d’imagerie matricielle Xenon 1900
+Lecteur d’imagerie matricielle Xenon 1900, http://country.honeywellaidc.com/fr-FR/Pages/Product.aspx?category=hand-held-barcode-scanner&cat=HSM&pid=1900
 
 ## Prérequis
 
