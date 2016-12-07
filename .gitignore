@@ -1,3 +1,5 @@
 /.vs
 /Honeywell.Xenon/bin
 /TestDouchette/bin
+/TestDouchette/obj
+/Honeywell.Xenon/obj
