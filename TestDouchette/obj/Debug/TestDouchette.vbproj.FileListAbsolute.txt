@@ -1,0 +1,8 @@
+c:\users\dev_info\documents\visual studio 2015\Projects\TestDouchette\TestDouchette\bin\Debug\TestDouchette.exe.config
+c:\users\dev_info\documents\visual studio 2015\Projects\TestDouchette\TestDouchette\obj\Debug\TestDouchette.vbprojResolveAssemblyReference.cache
+c:\users\dev_info\documents\visual studio 2015\Projects\TestDouchette\TestDouchette\obj\Debug\Interop.OposScale_CCO.dll
+c:\users\dev_info\documents\visual studio 2015\Projects\TestDouchette\TestDouchette\obj\Debug\Interop.OposScanner_CCO.dll
+c:\users\dev_info\documents\visual studio 2015\Projects\TestDouchette\TestDouchette\obj\Debug\TestDouchette.vbproj.ResolveComReference.cache
+c:\users\dev_info\documents\visual studio 2015\Projects\TestDouchette\TestDouchette\obj\Debug\TestDouchette.Form1.resources
+c:\users\dev_info\documents\visual studio 2015\Projects\TestDouchette\TestDouchette\obj\Debug\TestDouchette.Resources.resources
+c:\users\dev_info\documents\visual studio 2015\Projects\TestDouchette\TestDouchette\obj\Debug\TestDouchette.vbproj.GenerateResource.Cache

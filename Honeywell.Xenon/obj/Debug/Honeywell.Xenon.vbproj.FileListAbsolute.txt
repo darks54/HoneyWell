@@ -1,0 +1,8 @@
+C:\Users\dev_info\documents\visual studio 2015\Projects\TestDouchette\honeywell_xenon\obj\Debug\Honeywell.Xenon.Resources.resources
+C:\Users\dev_info\documents\visual studio 2015\Projects\TestDouchette\honeywell_xenon\obj\Debug\Honeywell.Xenon.vbproj.GenerateResource.Cache
+C:\Users\dev_info\documents\visual studio 2015\Projects\TestDouchette\honeywell_xenon\obj\Debug\Honeywell.Xenon.xml
+C:\Users\dev_info\documents\visual studio 2015\Projects\TestDouchette\honeywell_xenon\bin\Debug\Honeywell.Xenon.dll
+C:\Users\dev_info\documents\visual studio 2015\Projects\TestDouchette\honeywell_xenon\bin\Debug\Honeywell.Xenon.pdb
+C:\Users\dev_info\documents\visual studio 2015\Projects\TestDouchette\honeywell_xenon\bin\Debug\Honeywell.Xenon.xml
+C:\Users\dev_info\documents\visual studio 2015\Projects\TestDouchette\honeywell_xenon\obj\Debug\Honeywell.Xenon.dll
+C:\Users\dev_info\documents\visual studio 2015\Projects\TestDouchette\honeywell_xenon\obj\Debug\Honeywell.Xenon.pdb
