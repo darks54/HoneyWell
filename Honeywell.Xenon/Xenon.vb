@@ -2,16 +2,18 @@
 Imports System.IO.Ports
 Imports System.Text
 Imports System.Threading
+Imports System.Windows.Forms
 
 Public Class Xenon
     Implements IDisposable
+
+    Public IMGSNP As New IMGSNP
+    Public IMGSHP As New IMGSHP
     ' Keep track of when the object is disposed.
     Protected disposed As Boolean = False
-
     Dim photo As Boolean = False
     Private path As String = ""
     Private eventEnd As Boolean = False
-
 
     Private _port As IO.Ports.SerialPort
     Public Property Port As SerialPort
@@ -25,13 +27,17 @@ Public Class Xenon
 
     Sub New(ByVal port As String)
         _port = My.Computer.Ports.OpenSerialPort(port)
+        'If sendKeyAuto Then
+        AddHandler _port.DataReceived, AddressOf DataReceivedHandler
+        'End If
+
     End Sub
 
     Public Function GetImageJpeg(ByVal save_path As String) As Boolean
         path = save_path
         photo = True
-
-        AddHandler _port.DataReceived, AddressOf DataReceivedHandler
+        eventEnd = False
+        'AddHandler _port.DataReceived, AddressOf DataReceivedHandler
         _port.ReadExisting()
         Dim commande As String = ChrW(22) & ChrW(77) & ChrW(13) & "IMGSNP1L1B1T;IMGSHP6F70K18E."
         _port.WriteLine(commande)
@@ -50,8 +56,8 @@ Public Class Xenon
     Public Function GetImageBmp(ByVal save_path As String) As Boolean
         path = save_path
         photo = True
-
-        AddHandler _port.DataReceived, AddressOf DataReceivedHandler
+        eventEnd = False
+        'AddHandler _port.DataReceived, AddressOf DataReceivedHandler
         _port.ReadExisting()
         Dim commande As String = ChrW(22) & ChrW(77) & ChrW(13) & "IMGSNP1L1B1T;IMGSHP8F70K18E."
         _port.WriteLine(commande)
@@ -67,6 +73,11 @@ Public Class Xenon
         End If
     End Function
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="sender"></param>
+    ''' <param name="e"></param>
     Private Sub DataReceivedHandler(sender As Object, e As SerialDataReceivedEventArgs)
         Thread.Sleep(1000)
         Dim sp As SerialPort = CType(sender, SerialPort)
@@ -102,6 +113,10 @@ Public Class Xenon
 
             photo = False
 
+        ElseIf sp.IsOpen Then
+            Dim data As String = ""
+            data = sp.ReadExisting
+            SendKeys.SendWait(data)
             sp.ReadExisting()
         End If
         eventEnd = True

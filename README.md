@@ -5,11 +5,12 @@ Lecteur d’imagerie matricielle Xenon 1900, http://country.honeywellaidc.com/fr
 ## Prérequis
 
 * Microsoft .NET Framework 3.5, https://www.microsoft.com/fr-fr/download/details.aspx?id=21
+* Intallation du driver The Honeywell Scanning & Mobility (HSM), http://country.honeywellaidc.com/CatalogDocuments/HSM%20USB%20Serial%20Driver%20version%203.5.5.zip
 
 ## Utilisation
 
-* Télécharger le fichier Honeywell.Xenon.dll
-* Inclué le dans les références dans votre projet .Net
+* Téléchargez le fichier Honeywell.Xenon.dll
+* Incluez le dans les références dans votre projet .Net
 ```vb.net
 Imports Honeywell.Xenon
 ```
