@@ -122,6 +122,105 @@ Public Class Xenon
         eventEnd = True
     End Sub
 
+    Private Function BuildCommand() As String
+        Dim command As String = ""
+
+        Dim snp = "IMGSNP"
+        If Not IMGSNP.Style = Style.PhotoStyle Then
+            snp += Convert.ToInt32(IMGSNP.Style) & "P"
+        End If
+        If IMGSNP.Beeper Then
+            snp += "1B"
+        End If
+        If IMGSNP.WaitForTrigger Then
+            snp += "1T"
+        End If
+        If IMGSNP.LedState Then
+            snp += "1L"
+        End If
+        If Not IMGSNP.Exposure = 7874 Then
+            snp += IMGSNP.Exposure & "E"
+        End If
+        If Not IMGSNP.Gain = Gain.NoGain Then
+            snp += Convert.ToInt32(IMGSNP.Gain) & "G"
+        End If
+        If Not IMGSNP.TargetWhiteValue = 125 Then
+            snp += IMGSNP.TargetWhiteValue & "W"
+        End If
+        If Not IMGSNP.DeltaForAcceptance = 25 Then
+            snp += IMGSNP.DeltaForAcceptance & "D"
+        End If
+        If Not IMGSNP.UpdateTries = 6 Then
+            snp += IMGSNP.UpdateTries & "U"
+        End If
+        If Not IMGSNP.TargetSetPointPercentage = 50 Then
+            snp += IMGSNP.TargetSetPointPercentage & "%"
+        End If
+
+        Dim shp = ";IMGSHP"
+        If IMGSHP.InfinitFilter Then
+            shp += "1A"
+        End If
+        If IMGSHP.Compensation Then
+            shp += "1C"
+        End If
+        If IMGSHP.PixelDepth Then
+            shp += "1D"
+        End If
+        If Not IMGSHP.EdgeSharpen = 0 Then
+            shp += IMGSHP.EdgeSharpen & "E"
+        End If
+        If Not IMGSHP.FileFormat = FileFormat.JPEG Then
+            shp += Convert.ToInt32(IMGSNP.Gain) & "F"
+        End If
+        If IMGSHP.HistogramStretch Then
+            shp += "1H"
+        End If
+        If Not IMGSHP.InvertImage = InvertImage.None Then
+            If IMGSHP.InvertImage = InvertImage.X Then
+                shp += "1ix"
+            Else
+                shp += "1iy"
+            End If
+        End If
+        If IMGSHP.NoiseReduction Then
+            shp += "1if"
+        End If
+        Select Case IMGSHP.ImageRotate
+            Case ImageRotate.r090
+                shp += "1ir"
+            Case ImageRotate.r180
+                shp += "2ir"
+            Case ImageRotate.r260
+                shp += "3ir"
+        End Select
+        If Not IMGSHP.JpegImageQuality = 50 Then
+            shp += IMGSHP.JpegImageQuality & "J"
+        End If
+        If Not IMGSHP.GammaCorrection = 0 Then
+            shp += IMGSHP.GammaCorrection & "K"
+        End If
+        If Not IMGSHP.ImageMargin = 0 Then
+            shp += IMGSHP.ImageMargin & "M"
+        Else
+            If Not IMGSHP.ImageCroppingLeft = 0 Then
+                shp += IMGSHP.ImageCroppingLeft & "L"
+            End If
+            If Not IMGSHP.ImageCroppingRight = 0 Then
+                shp += IMGSHP.ImageCroppingRight & "R"
+            End If
+            If Not IMGSHP.ImageCroppingTop = 0 Then
+                shp += IMGSHP.ImageCroppingTop & "T"
+            End If
+            If Not IMGSHP.ImageCroppingBottom = 0 Then
+                shp += IMGSHP.ImageCroppingBottom & "B"
+            End If
+        End If
+        'TODO: Protocol
+        Return command
+    End Function
+
+
     ' This method disposes the base object's resources.
     Protected Overridable Sub Dispose(ByVal disposing As Boolean)
         If Not Me.disposed Then

@@ -1,33 +1,18 @@
 ﻿Public Class IMGSNP
 
-    Private _style As StyleList = StyleList.PhotoStyle
+    Private _style As Style = Style.PhotoStyle
     ''' <summary>
     ''' <para>This get or set the image Snap style.</para>
     ''' <para>Default: PhotoStyle</para>
     ''' </summary>
-    Public Property Style As StyleList
+    Public Property Style As Style
         Get
             Return _style
         End Get
-        Set(value As StyleList)
+        Set(value As Style)
             _style = value
         End Set
     End Property
-
-    Enum StyleList
-        ''' <summary>
-        ''' This processing allows a few frames to be taken until the exposure parameters are met. The last frame is the, available for further use.
-        ''' </summary>
-        DecodingStyle = 0
-        ''' <summary>
-        ''' Thismimics a simple digital camera, and result in a visually optimized image.
-        ''' </summary>
-        PhotoStyle = 1
-        ''' <summary>
-        ''' This is an advanced style that should only be used by an experienced user. It allows you th most freedom to set up the scanner, and has no auto-exposure.
-        ''' </summary>
-        ManualStyle = 2
-    End Enum
 
     Private _beeper As Boolean = False
     ''' <summary>
@@ -91,25 +76,19 @@
         End Set
     End Property
 
-    Private _gain As GainList = GainList.NoGain
+    Private _gain As Gain = Gain.NoGain
     ''' <summary>
     ''' <para>Gain is used in Manual Style only.</para>
     ''' <para>Default: NoGain</para>
     ''' </summary>
-    Public Property Gain As GainList
+    Public Property Gain As Gain
         Get
             Return _gain
         End Get
-        Set(value As GainList)
+        Set(value As Gain)
             _gain = value
         End Set
     End Property
-    Enum GainList
-        NoGain = 1
-        MediumGain = 2
-        HeavyGain = 4
-        MaximunGain = 8
-    End Enum
 
     Private _targetWhiteValue As Integer = 125
     ''' <summary>
@@ -163,7 +142,6 @@
     End Property
 
     Private _targetSetPointPercentage As Integer = 50
-
     ''' <summary>
     ''' Sets the target point for the light and dark values in the captured image.
     ''' <para>Range: 1 - 99</para>

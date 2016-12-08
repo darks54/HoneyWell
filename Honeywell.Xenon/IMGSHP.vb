@@ -32,29 +32,19 @@ Public Class IMGSHP
         End Set
     End Property
 
-    Private _pixelDepth As PixelDepthList = PixelDepthList.Grayscale
+    Private _pixelDepth As PixelDepth = PixelDepth.Grayscale
     ''' <summary>
     ''' <para>Indicates the number of bits per pixel in the transmitted image (KIM or BMP format only).</para>
     ''' <para>Default: Grayscale</para>
     ''' </summary>
-    Public Property PixelDepth As PixelDepthList
+    Public Property PixelDepth As PixelDepth
         Get
             Return _pixelDepth
         End Get
-        Set(value As PixelDepthList)
+        Set(value As PixelDepth)
             _pixelDepth = value
         End Set
     End Property
-    Enum PixelDepthList
-        ''' <summary>
-        ''' 8 bits per pixel, grayscale image
-        ''' </summary>
-        Grayscale = 8
-        ''' <summary>
-        ''' 1 bits per pixel, black and white image
-        ''' </summary>
-        BlackAndWhite = 1
-    End Enum
 
     Private _edgeSharpen As Integer = 0
     ''' <summary>
@@ -73,73 +63,19 @@ Public Class IMGSHP
         End Set
     End Property
 
-    Private _fileFormat As FileFormatList = FileFormatList.JPEG
+    Private _fileFormat As FileFormat = FileFormat.JPEG
     ''' <summary>
     ''' <para>Indicates the desired format for the image.</para>
     ''' <para>Default: JPEG</para>
     ''' </summary>
-    Public Property FileFormat As FileFormatList
+    Public Property FileFormat As FileFormat
         Get
             Return _fileFormat
         End Get
-        Set(value As FileFormatList)
+        Set(value As FileFormat)
             _fileFormat = value
         End Set
     End Property
-    Enum FileFormatList
-        ''' <summary>
-        ''' KIM format
-        ''' </summary>
-        KIM = 0
-        ''' <summary>
-        ''' TIFF binary
-        ''' </summary>
-        TIFF = 1
-        ''' <summary>
-        ''' TIFF binary group 4, compressed
-        ''' </summary>
-        TIFF_Compressed = 2
-        ''' <summary>
-        ''' TIFF grayscale
-        ''' </summary>
-        TIFF_Grayscale = 3
-        ''' <summary>
-        ''' Uncompressed binary (upper left to lower right, 1 pixel/bit, 0 padded end of line)
-        ''' </summary>
-        UncompressedBinary = 4
-        ''' <summary>
-        ''' Uncompressed grayscale (upper left to lower right, bitmap format)
-        ''' </summary>
-        UncompressedGrayscale = 5
-        ''' <summary>
-        ''' JPEG image
-        ''' </summary>
-        JPEG = 6
-        ''' <summary>
-        ''' BMP image (lower right to upper left, uncompressed)
-        ''' </summary>
-        BMP = 8
-        ''' <summary>
-        ''' TIFF color compressed image
-        ''' </summary>
-        TIFF_ColorCompressed = 10
-        ''' <summary>
-        ''' TIFF color uncompressed image
-        ''' </summary>
-        TIFF_ColorUncompressed = 11
-        ''' <summary>
-        ''' JPEG color image
-        ''' </summary>
-        JPEG_Color = 12
-        ''' <summary>
-        ''' BMP color image
-        ''' </summary>
-        BMP_Color = 14
-        ''' <summary>
-        ''' BMP uncompressed raw image
-        ''' </summary>
-        BMP_Uncompressed = 15
-    End Enum
 
     Private _histogramStretch As Boolean = False
     ''' <summary>
@@ -156,30 +92,19 @@ Public Class IMGSHP
         End Set
     End Property
 
-    Private _invertImage As InvertImageList = InvertImageList.None
+    Private _invertImage As InvertImage = InvertImage.None
     ''' <summary>
     ''' <para>Invert image is used to rotate the image around the X or Y axis.</para>
     ''' <para>Default: None</para>
     ''' </summary>
-    Public Property InvertImage As InvertImageList
+    Public Property InvertImage As InvertImage
         Get
             Return _invertImage
         End Get
-        Set(value As InvertImageList)
+        Set(value As InvertImage)
             _invertImage = value
         End Set
     End Property
-    Enum InvertImageList
-        None = -1
-        ''' <summary>
-        ''' Invert around the X axis (flips picture upside to down)
-        ''' </summary>
-        X = 0
-        ''' <summary>
-        ''' Invert around the Y axis (flips picture left to right)
-        ''' </summary>
-        Y = 1
-    End Enum
 
     Private _noiseReduction As Boolean = False
     ''' <summary>
@@ -196,37 +121,19 @@ Public Class IMGSHP
         End Set
     End Property
 
-    Private _imageRotate As InvertImageList = InvertImageList.None
+    Private _imageRotate As ImageRotate = ImageRotate.r000
     ''' <summary>
     ''' <para>Used to rotate the image.</para>
     ''' <para>Default: r000</para>
     ''' </summary>
-    Public Property ImageRotate As ImageRotateList
+    Public Property ImageRotate As ImageRotate
         Get
             Return _imageRotate
         End Get
-        Set(value As ImageRotateList)
+        Set(value As ImageRotate)
             _imageRotate = value
         End Set
     End Property
-    Enum ImageRotateList
-        ''' <summary>
-        ''' Image as snapped (rightside up)
-        ''' </summary>
-        r000 = 0
-        ''' <summary>
-        ''' Rotate image 90 degrees to the right
-        ''' </summary>
-        r090 = 1
-        ''' <summary>
-        ''' Rotate image 180 degrees (upside down)
-        ''' </summary>
-        r180 = 2
-        ''' <summary>
-        ''' Rotate image 90 degrees to the left
-        ''' </summary>
-        r260 = 3
-    End Enum
 
     Private _jpegImageQuality As Integer = 50
     ''' <summary>
@@ -347,65 +254,33 @@ Public Class IMGSHP
         End Set
     End Property
 
-    Private _protocol As ProtocolList = ProtocolList.NoneForUSB
+    Private _protocol As Protocol = Protocol.NoneForUSB
     ''' <summary>
     ''' <para>Used for shipping an image.</para>
     ''' <para>Default: NoneForUSB</para>
     ''' </summary>
-    Public Property Protocol As ProtocolList
+    Public Property Protocol As Protocol
         Get
             Return _protocol
         End Get
-        Set(value As ProtocolList)
+        Set(value As Protocol)
             _protocol = value
         End Set
     End Property
-    Enum ProtocolList
-        ''' <summary>
-        ''' None (raw data)
-        ''' </summary>
-        None = 0
-        ''' <summary>
-        ''' None (default for USB)
-        ''' </summary>
-        NoneForUSB = 2
-        ''' <summary>
-        ''' Hmodem compressed (default for RS232)
-        ''' </summary>
-        HmodemCompressed = 3
-        ''' <summary>
-        ''' Hmodem
-        ''' </summary>
-        Hmodem = 4
-    End Enum
 
-    Private _pixelShip As PixelShipList = PixelShipList.Ship1
+    Private _pixelShip As PixelShip = PixelShip.Ship1
     ''' <summary>
     ''' <para>Used for shipping an image.</para>
     ''' <para>Default: Ship1</para>
     ''' </summary>
-    Public Property PixelShip As PixelShipList
+    Public Property PixelShip As PixelShip
         Get
             Return _pixelShip
         End Get
-        Set(value As PixelShipList)
+        Set(value As PixelShip)
             _pixelShip = value
         End Set
     End Property
-    Enum PixelShipList
-        ''' <summary>
-        ''' Ship every pixel
-        ''' </summary>
-        Ship1 = 1
-        ''' <summary>
-        ''' Ship every 2nd pixel, both horizontally and vertically
-        ''' </summary>
-        Ship2 = 2
-        ''' <summary>
-        ''' Ship every 3nd pixel, both horizontally and vertically
-        ''' </summary>
-        Ship3 = 3
-    End Enum
 
     Private _documentImageFilter As Integer = 0
     ''' <summary>

@@ -14,7 +14,12 @@ Public Class Form1
         If PictureBox1.Image IsNot Nothing Then
             PictureBox1.Image.Dispose()
         End If
-
+        xenon.IMGSNP.LedState = True
+        xenon.IMGSNP.Beeper = True
+        xenon.IMGSNP.WaitForTrigger = True
+        xenon.IMGSHP.FileFormat = FileFormat.JPEG
+        xenon.IMGSHP.GammaCorrection = 70
+        xenon.IMGSHP.EdgeSharpen = 18
         If xenon.GetImageJpeg("C:\temp\test.jpg") Then
             PictureBox1.Image = Image.FromFile("C:\temp\test.jpg")
         Else
@@ -26,6 +31,12 @@ Public Class Form1
         If PictureBox1.Image IsNot Nothing Then
             PictureBox1.Image.Dispose()
         End If
+        xenon.IMGSNP.LedState = True
+        xenon.IMGSNP.Beeper = True
+        xenon.IMGSNP.WaitForTrigger = True
+        xenon.IMGSHP.FileFormat = FileFormat.BMP
+        xenon.IMGSHP.GammaCorrection = 70
+        xenon.IMGSHP.EdgeSharpen = 18
         If xenon.GetImageBmp("C:\temp\test.bmp") Then
             PictureBox1.Image = Image.FromFile("C:\temp\test.bmp")
         Else
