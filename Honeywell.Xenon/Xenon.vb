@@ -27,10 +27,7 @@ Public Class Xenon
 
     Sub New(ByVal port As String)
         _port = My.Computer.Ports.OpenSerialPort(port)
-        'If sendKeyAuto Then
         AddHandler _port.DataReceived, AddressOf DataReceivedHandler
-        'End If
-
     End Sub
 
     Public Function GetImage(ByVal save_path As String) As Boolean
@@ -53,31 +50,6 @@ Public Class Xenon
         End If
     End Function
 
-    Public Function GetImageBmp(ByVal save_path As String) As Boolean
-        path = save_path
-        photo = True
-        eventEnd = False
-        'AddHandler _port.DataReceived, AddressOf DataReceivedHandler
-        _port.ReadExisting()
-        Dim commande As String = ChrW(22) & ChrW(77) & ChrW(13) & "IMGSNP1L1B1T;IMGSHP8F70K18E."
-        _port.WriteLine(commande)
-        Dim compteur As Integer = 0
-        While Not eventEnd 'And compteur <= 100
-            Thread.Sleep(100)
-            compteur += 1
-        End While
-        If compteur > 100 Then
-            Return False
-        Else
-            Return True
-        End If
-    End Function
-
-    ''' <summary>
-    ''' 
-    ''' </summary>
-    ''' <param name="sender"></param>
-    ''' <param name="e"></param>
     Private Sub DataReceivedHandler(sender As Object, e As SerialDataReceivedEventArgs)
         Thread.Sleep(1000)
         Dim sp As SerialPort = CType(sender, SerialPort)
