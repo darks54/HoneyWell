@@ -20,7 +20,7 @@ Public Class Form1
         xenon.IMGSHP.FileFormat = FileFormat.JPEG
         xenon.IMGSHP.GammaCorrection = 70
         xenon.IMGSHP.EdgeSharpen = 18
-        If xenon.GetImageJpeg("C:\temp\test.jpg") Then
+        If xenon.GetImage("C:\temp\test.jpg") Then
             PictureBox1.Image = Image.FromFile("C:\temp\test.jpg")
         Else
             MsgBox("erreur")
@@ -37,7 +37,7 @@ Public Class Form1
         xenon.IMGSHP.FileFormat = FileFormat.BMP
         xenon.IMGSHP.GammaCorrection = 70
         xenon.IMGSHP.EdgeSharpen = 18
-        If xenon.GetImageBmp("C:\temp\test.bmp") Then
+        If xenon.GetImage("C:\temp\test.bmp") Then
             PictureBox1.Image = Image.FromFile("C:\temp\test.bmp")
         Else
             MsgBox("erreur")

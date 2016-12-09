@@ -33,13 +33,13 @@ Public Class Xenon
 
     End Sub
 
-    Public Function GetImageJpeg(ByVal save_path As String) As Boolean
+    Public Function GetImage(ByVal save_path As String) As Boolean
         path = save_path
         photo = True
         eventEnd = False
         'AddHandler _port.DataReceived, AddressOf DataReceivedHandler
         _port.ReadExisting()
-        Dim commande As String = ChrW(22) & ChrW(77) & ChrW(13) & "IMGSNP1L1B1T;IMGSHP6F70K18E."
+        Dim commande As String = BuildCommand()
         _port.WriteLine(commande)
         Dim compteur As Integer = 0
         While Not eventEnd And compteur <= 100
@@ -164,14 +164,14 @@ Public Class Xenon
         If IMGSHP.Compensation Then
             shp += "1C"
         End If
-        If IMGSHP.PixelDepth Then
+        If IMGSHP.PixelDepth = PixelDepth.BlackAndWhite Then
             shp += "1D"
         End If
         If Not IMGSHP.EdgeSharpen = 0 Then
             shp += IMGSHP.EdgeSharpen & "E"
         End If
         If Not IMGSHP.FileFormat = FileFormat.JPEG Then
-            shp += Convert.ToInt32(IMGSNP.Gain) & "F"
+            shp += Convert.ToInt32(IMGSHP.FileFormat) & "F"
         End If
         If IMGSHP.HistogramStretch Then
             shp += "1H"
@@ -216,7 +216,35 @@ Public Class Xenon
                 shp += IMGSHP.ImageCroppingBottom & "B"
             End If
         End If
-        'TODO: Protocol
+        Select Case IMGSHP.Protocol
+            Case Protocol.None
+                shp += "0P"
+            Case Protocol.NoneForUSB
+                shp += ""
+            Case Protocol.HmodemCompressed
+                shp += "3P"
+            Case Protocol.Hmodem
+                shp += "4P"
+        End Select
+        Select Case IMGSHP.PixelShip
+            Case PixelShip.Ship1
+                shp += ""
+            Case PixelShip.Ship2
+                shp += "2S"
+            Case PixelShip.Ship3
+                shp += "3S"
+        End Select
+        If Not IMGSHP.DocumentImageFilter = 0 Then
+            shp += IMGSHP.DocumentImageFilter & "U"
+        End If
+        If IMGSHP.BlurImage Then
+            shp += "1V"
+        End If
+        If IMGSHP.HistogramShip Then
+            shp += "1W"
+        End If
+
+        command = ChrW(22) & ChrW(77) & ChrW(13) & snp & shp & "."
         Return command
     End Function
 

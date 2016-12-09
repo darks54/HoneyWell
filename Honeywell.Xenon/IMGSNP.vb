@@ -44,7 +44,7 @@
         End Set
     End Property
 
-    Private _ledState As Boolean
+    Private _ledState As Boolean = False
     ''' <summary>
     ''' <para>Determines if the LEDs should be on or off, and when. LED State is not available when using Decoding Style.</para>
     ''' <para>False: LEDs off (default)</para>
@@ -124,7 +124,7 @@
         End Set
     End Property
 
-    Private _updateTries As Integer
+    Private _updateTries As Integer = 6
     ''' <summary>
     ''' <para>This sets the maximum number of frames the scanner should take to reach the Delta for Acceptance. Update Tries is only available when using Photo Style.</para>
     ''' <para>Range: 0 - 10</para>
